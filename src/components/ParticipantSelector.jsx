@@ -1,58 +1,57 @@
 import React from 'react';
-import { Check, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Check, UserPlus } from 'lucide-react';
 
-const FRIENDS = [
+const PARTICIPANTS = [
     "ภูมิ", "เปรม", "เจ็ต", "ท็อป", "เบส",
     "ซี", "บะจ่าง", "เปปเป้อ", "อชิ", "นาโน"
 ];
 
 const ParticipantSelector = ({ selected, onToggle }) => {
     return (
-        <div className="w-full max-w-md mx-auto p-6 bg-slate-800/50 backdrop-blur-lg rounded-2xl border border-slate-700 shadow-xl">
-            <h2 className="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Who's in the Squad?
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-                {FRIENDS.map((friend) => {
-                    const isSelected = selected.includes(friend);
+        <div className="w-full max-w-4xl mx-auto p-4">
+            <div className="flex items-center gap-3 mb-6 justify-center">
+                <div className="p-3 bg-blue-500/20 rounded-xl text-blue-400">
+                    <UserPlus size={24} />
+                </div>
+                <h2 className="text-2xl font-bold text-white">เลือกเหยื่อที่จะโดนเชือด 🔪</h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+                {PARTICIPANTS.map((name, index) => {
+                    const isSelected = selected.includes(name);
                     return (
                         <motion.button
-                            key={friend}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={() => onToggle(friend)}
+                            key={name}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => onToggle(name)}
                             className={`
-                relative flex items-center justify-between p-3 rounded-xl transition-all duration-200
+                relative p-4 rounded-xl border-2 transition-all duration-200 flex items-center justify-center gap-2
                 ${isSelected
-                                    ? 'bg-blue-600/20 border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
-                                    : 'bg-slate-700/30 border-slate-600/30 hover:bg-slate-700/50'}
-                border
+                                    ? 'bg-blue-600/20 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]'
+                                    : 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800'}
               `}
                         >
-                            <div className="flex items-center gap-3">
-                                <div className={`
-                  p-2 rounded-full 
-                  ${isSelected ? 'bg-blue-500 text-white' : 'bg-slate-600 text-slate-400'}
-                `}>
-                                    <User size={16} />
-                                </div>
-                                <span className={`font-medium ${isSelected ? 'text-white' : 'text-slate-400'}`}>
-                                    {friend}
-                                </span>
-                            </div>
+                            <span className={`font-bold text-lg ${isSelected ? 'text-white' : 'text-slate-400'}`}>
+                                {name}
+                            </span>
                             {isSelected && (
                                 <motion.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
-                                    className="text-blue-400"
+                                    className="absolute -top-2 -right-2 bg-blue-500 rounded-full p-1"
                                 >
-                                    <Check size={18} />
+                                    <Check size={12} className="text-white" />
                                 </motion.div>
                             )}
                         </motion.button>
                     );
                 })}
+            </div>
+
+            <div className="mt-6 text-center text-slate-500 text-sm">
+                เลือกอย่างน้อย 2 คนนะจ๊ะ ({selected.length} คนแล้ว)
             </div>
         </div>
     );

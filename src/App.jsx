@@ -45,7 +45,7 @@ function App() {
                         animate={{ y: 0, opacity: 1 }}
                         className="text-4xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent drop-shadow-2xl mb-2 md:mb-4"
                     >
-                        BILL SPLITTER
+                        โปรแกรมสุ่มคนจ่าย Sam Steak 🥩
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ function App() {
                         className="text-slate-400 text-sm md:text-lg flex items-center justify-center gap-2"
                     >
                         <Sparkles size={16} className="text-yellow-400" />
-                        Spin the wheel, split the bill, keep the thrill.
+                        กินด้วยกัน จ่ายด้วยกัน... แต่เอ็งจ่ายก่อนนะ
                     </motion.p>
                 </header>
 
@@ -82,7 +82,7 @@ function App() {
                                         : 'bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 shadow-lg shadow-blue-600/30'}
                 `}
                             >
-                                Next: The Wheel of Doom
+                                ไปหมุนวงล้อแห่งความซวย
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </motion.div>
@@ -97,7 +97,7 @@ function App() {
                             className="w-full flex flex-col items-center"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-                                Who's paying first? 🤞
+                                ใครจะเป็นผู้โชคดี (จ่ายตัง)? 🤞
                             </h2>
                             <Wheel
                                 participants={selectedParticipants}
@@ -107,7 +107,7 @@ function App() {
                                 onClick={() => setStep(1)}
                                 className="mt-12 text-slate-500 hover:text-white transition-colors flex items-center gap-2"
                             >
-                                <RotateCcw size={16} /> Back to selection
+                                <RotateCcw size={16} /> กลับไปเลือกคนใหม่
                             </button>
                         </motion.div>
                     )}
@@ -121,7 +121,7 @@ function App() {
                         >
                             <div className="text-center mb-8">
                                 <div className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/50 text-yellow-300 font-bold text-lg md:text-xl mb-4 animate-bounce">
-                                    👑 The Chosen One: {payer}
+                                    👑 ผู้โชคดีได้แก่... {payer}
                                 </div>
                             </div>
 
@@ -134,7 +134,7 @@ function App() {
                                 onClick={reset}
                                 className="mt-12 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-2"
                             >
-                                <RotateCcw size={18} /> Start Over
+                                <RotateCcw size={18} /> เริ่มใหม่หมด
                             </button>
                         </motion.div>
                     )}

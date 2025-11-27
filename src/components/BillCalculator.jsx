@@ -71,15 +71,15 @@ const BillCalculator = ({ payer, participants }) => {
                     <Calculator size={24} />
                 </div>
                 <div>
-                    <h2 className="text-xl md:text-2xl font-bold text-white">Sum Checker 🧾</h2>
-                    <p className="text-slate-400 text-sm">Verify if everyone's share matches the bill.</p>
+                    <h2 className="text-xl md:text-2xl font-bold text-white">เครื่องคิดเลขทวงหนี้ 💸</h2>
+                    <p className="text-slate-400 text-sm">เช็คซิว่าเพื่อนจ่ายครบหรือยัง</p>
                 </div>
             </div>
 
             <div className="space-y-6">
                 {/* Total Bill Input */}
                 <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-2">Total Bill Amount</label>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">ค่าเสียหายทั้งหมด (บาท)</label>
                     <div className="relative">
                         <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                         <input
@@ -98,14 +98,14 @@ const BillCalculator = ({ payer, participants }) => {
                 <div className="bg-blue-500/10 p-4 rounded-xl border border-blue-500/20">
                     <label className="block text-sm font-bold text-blue-300 mb-2 flex items-center gap-2">
                         <User size={16} />
-                        {payer}'s Share (Payer)
+                        ส่วนของ {payer} (คนจ่าย)
                     </label>
                     <input
                         type="number"
                         value={payerCost}
                         onChange={(e) => setPayerCost(e.target.value)}
                         className="w-full bg-slate-900/80 border border-blue-500/30 rounded-lg py-2 px-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                        placeholder={`How much was ${payer}'s item?`}
+                        placeholder={`${payer} สั่งไปเท่าไหร่?`}
                     />
                 </div>
 
@@ -113,7 +113,7 @@ const BillCalculator = ({ payer, participants }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {participants.filter(p => p !== payer).map(p => (
                         <div key={p}>
-                            <label className="block text-xs font-medium text-slate-500 mb-1">{p}'s Share</label>
+                            <label className="block text-xs font-medium text-slate-500 mb-1">ส่วนของ {p}</label>
                             <input
                                 type="number"
                                 value={contributions[p] || ''}
@@ -129,7 +129,7 @@ const BillCalculator = ({ payer, participants }) => {
                     onClick={calculate}
                     className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-green-900/20 active:scale-95"
                 >
-                    Verify Sum
+                    ตรวจสอบยอดเงิน
                 </button>
             </div>
 
@@ -180,24 +180,24 @@ const BillCalculator = ({ payer, participants }) => {
 
                             <p className="text-xl font-bold text-white mb-6">
                                 {results.isMatch
-                                    ? "RESPECT + Perfect Balance"
+                                    ? "ครบจบ แยกย้าย! (Mission Passed)"
                                     : results.difference > 0
-                                        ? "Bonus Get! Keep the change? 😏"
-                                        : "Math is hard... Emotional Damage 📉"}
+                                        ? "กำไรว่ะ! เอาไปเลี้ยงหนมต่อ (Stonks)"
+                                        : "เงินไม่ครบ! ใครเนียนไม่จ่าย? (Wasted)"}
                             </p>
 
                             <div className="bg-black/30 rounded-xl p-4 mb-6 backdrop-blur-md">
                                 <div className="flex justify-between text-sm text-slate-400 mb-2">
-                                    <span>Target:</span>
+                                    <span>ยอดที่ต้องจ่าย:</span>
                                     <span>{parseFloat(totalBill).toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-sm text-slate-400 mb-2">
-                                    <span>Collected:</span>
+                                    <span>เก็บได้จริง:</span>
                                     <span>{results.totalMoneyReady.toFixed(2)}</span>
                                 </div>
                                 <div className={`flex justify-between text-xl font-bold border-t border-white/10 pt-2 
                   ${results.isMatch ? 'text-green-400' : results.difference > 0 ? 'text-yellow-400' : 'text-red-400'}`}>
-                                    <span>Diff:</span>
+                                    <span>ส่วนต่าง:</span>
                                     <span>{results.difference > 0 ? '+' : ''}{results.difference.toFixed(2)}</span>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@ const BillCalculator = ({ payer, participants }) => {
                                             : 'bg-red-500 hover:bg-red-400 text-white shadow-lg shadow-red-500/30'}
                 `}
                             >
-                                {results.isMatch ? "GG EZ" : results.difference > 0 ? "Profit!" : "Try Again"}
+                                {results.isMatch ? "แยกย้าย!" : results.difference > 0 ? "หวานเจี๊ยบ!" : "ลองใหม่"}
                             </button>
                         </motion.div>
                     </motion.div>
