@@ -115,3 +115,5 @@ typings/
 
 # Vite
 dist/
+
+.vscode

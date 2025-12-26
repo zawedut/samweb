@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import ParticipantSelector from './components/ParticipantSelector';
-import Wheel from './components/Wheel';
-import BillCalculator from './components/BillCalculator';
-import { Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ParticipantSelector from "./components/ParticipantSelector";
+import Wheel from "./components/Wheel";
+import BillCalculator from "./components/BillCalculator";
+import { Sparkles, ArrowRight, RotateCcw } from "lucide-react";
 
 function App() {
     const [step, setStep] = useState(1); // 1: Select, 2: Wheel, 3: Calculate
-    const [selectedParticipants, setSelectedParticipants] = useState([]);
-    const [payer, setPayer] = useState(null);
+    const [selectedParticipants, setSelectedParticipants] = useState<string[]>(
+        []
+    );
+    const [payer, setPayer] = useState<string | null>(null);
 
-    const toggleParticipant = (name) => {
-        setSelectedParticipants(prev =>
+    const toggleParticipant = (name: string) => {
+        setSelectedParticipants((prev) =>
             prev.includes(name)
-                ? prev.filter(p => p !== name)
+                ? prev.filter((p) => p !== name)
                 : [...prev, name]
         );
     };
 
-    const handleWinner = (winner) => {
+    const handleWinner = (winner: string) => {
         setPayer(winner);
         setTimeout(() => setStep(3), 3000); // Wait for confetti and realization
     };
@@ -45,7 +47,7 @@ function App() {
                         animate={{ y: 0, opacity: 1 }}
                         className="text-4xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent drop-shadow-2xl mb-2 md:mb-4"
                     >
-                        โปรแกรมสุ่มคนจ่าย Sam Steak 🥩
+                        โปรแกรมสุ่มคนจ่าย Sam Steak <span className="text-white">🥩</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -77,9 +79,11 @@ function App() {
                                 onClick={() => setStep(2)}
                                 className={`
                   mt-8 group flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg md:text-xl transition-all
-                  ${selectedParticipants.length < 2
-                                        ? 'bg-slate-800 text-slate-600 cursor-not-allowed'
-                                        : 'bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 shadow-lg shadow-blue-600/30'}
+                  ${
+                      selectedParticipants.length < 2
+                          ? "bg-slate-800 text-slate-600 cursor-not-allowed"
+                          : "bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 shadow-lg shadow-blue-600/30"
+                  }
                 `}
                             >
                                 ไปหมุนวงล้อแห่งความซวย
@@ -126,7 +130,7 @@ function App() {
                             </div>
 
                             <BillCalculator
-                                payer={payer}
+                                payer={payer ?? ""}
                                 participants={selectedParticipants}
                             />
 
